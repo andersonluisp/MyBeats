@@ -18,6 +18,7 @@
     <color name="photo_background">#F0F0F0</color>
     <color name="list_background">#282424</color>
     <color name="accent">#FFC120</color>
+    <color name="light_gray">#F0F0F0</color>
 
     <color name="white_60">#99FFFFFF</color>
     <color name="white_80">#CCFFFFFF</color>
