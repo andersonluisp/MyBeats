@@ -6,13 +6,169 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/background_login"
+        android:scaleType="centerCrop"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:src="@drawable/login_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideHorizontal50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideHorizontalTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/guideHorizontalTop" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideVerticalStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/guideStartVerticalMargin" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideVerticalEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/guideEndVerticalMargin" />
+
+        <TextView
+            android:id="@+id/tvMyBeats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans_700"
+            android:text="@string/my_beats"
+            android:textColor="@color/white"
+            android:textSize="@dimen/loginTitle"
+            app:layout_constraintEnd_toEndOf="@id/guideVerticalEnd"
+            app:layout_constraintStart_toStartOf="@id/guideVerticalStart"
+            app:layout_constraintTop_toTopOf="@id/guideHorizontalTop" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/login_margin_between_subtitle_and_title"
+            android:fontFamily="@font/dm_sans_700"
+            android:text="@string/label_headset_deejay"
+            android:textColor="@color/white"
+            android:textSize="@dimen/loginSubtitle"
+            app:layout_constraintEnd_toEndOf="@id/guideVerticalEnd"
+            app:layout_constraintStart_toStartOf="@id/guideVerticalStart"
+            app:layout_constraintTop_toBottomOf="@id/tvMyBeats" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilUser"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/login_margin_top_user_input_to_center"
+            android:theme="@style/MyTextInputLayout_overlay"
+            app:boxStrokeColor="@color/primary_200"
+            app:layout_constraintEnd_toEndOf="@id/guideVerticalEnd"
+            app:layout_constraintStart_toStartOf="@id/guideVerticalStart"
+            app:layout_constraintTop_toBottomOf="@id/guideHorizontal50">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:hint="@string/label_user"
+                android:textColor="@color/white_80" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPassword"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/login_margin_between_user_password"
+            android:theme="@style/MyTextInputLayout_overlay"
+            app:boxStrokeColor="@color/primary_200"
+            app:layout_constraintEnd_toEndOf="@id/guideVerticalEnd"
+            app:layout_constraintStart_toStartOf="@id/guideVerticalStart"
+            app:layout_constraintTop_toBottomOf="@id/tilUser"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/white_60">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:hint="@string/label_password"
+                android:inputType="textPassword"
+                android:textColor="@color/white_80" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnEnter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/login_margin_between_password_and_button"
+            android:background="@drawable/button_bg"
+            android:fontFamily="@font/dm_sans_700"
+            android:text="@string/enter"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/guideVerticalEnd"
+            app:layout_constraintStart_toStartOf="@id/guideVerticalStart"
+            app:layout_constraintTop_toBottomOf="@id/tilPassword" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/login_margin_between_button_and_subscribe"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/guideVerticalEnd"
+            app:layout_constraintStart_toStartOf="@id/guideVerticalStart"
+            app:layout_constraintTop_toBottomOf="@id/btnEnter">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dm_sans_700"
+                android:text="@string/label_not_subscribed"
+                android:textColor="@color/white_80"
+                android:textSize="@dimen/login_label_subscribe" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/dm_sans_700"
+                android:text="@string/subscribe"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/login_label_subscribe" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="guideStartVerticalMargin">24dp</dimen>
+    <dimen name="guideEndVerticalMargin">24dp</dimen>
+    <dimen name="guideHorizontalTop">63dp</dimen>
+    <dimen name="loginTitle">45sp</dimen>
+    <dimen name="loginSubtitle">14sp</dimen>
+    <dimen name="login_margin_top_user_input_to_center">24dp</dimen>
+    <dimen name="login_margin_between_user_password">30dp</dimen>
+    <dimen name="login_margin_between_password_and_button">30dp</dimen>
+    <dimen name="login_margin_between_button_and_subscribe">24dp</dimen>
+    <dimen name="login_label_subscribe">14sp</dimen>
+    <dimen name="login_margin_between_subtitle_and_title">8dp</dimen>
+</resources>

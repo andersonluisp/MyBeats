@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyTextInputLayout_overlay">
+        <item name="colorOnSurface">@color/white_60</item>
+        <item name="colorPrimary">@color/primary_200</item>
+    </style>
+</resources>
