@@ -23,32 +23,44 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:elevation="4dp"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                <ImageView
+                    android:id="@+id/ivHeadset"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:contentDescription="@string/phone_model_02"
+                    android:src="@drawable/headset"
+                    android:layout_marginTop="?attr/actionBarSize"
+                    app:layout_collapseMode="parallax"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:layout_width="220dp"
-                    android:layout_height="220dp"
-                    android:contentDescription="@string/phone_model_02"
-                    android:src="@drawable/headset"
-                    app:layout_collapseMode="parallax"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/toolbar" />
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shadow"
+                    app:layout_constraintStart_toStartOf="@id/ivHeadset"
+                    app:layout_constraintEnd_toEndOf="@id/ivHeadset"
+                    app:layout_constraintTop_toBottomOf="@id/ivHeadset"
+                    tools:ignore="ContentDescription" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="4dp"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProducts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/list_background"
