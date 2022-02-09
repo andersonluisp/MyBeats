@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mybeats.R
+import com.example.mybeats.data.model.Product
 import com.example.mybeats.databinding.FragmentProductsListBinding
 import com.example.mybeats.view.products.list.adapter.ProductsAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -18,11 +19,7 @@ class ProductsListFragment : Fragment() {
     private lateinit var binding: FragmentProductsListBinding
     private val viewModel: ProductsViewModel by viewModel()
     private val productsAdapter: ProductsAdapter by lazy {
-        ProductsAdapter() {
-            val direction =
-                ProductsListFragmentDirections.actionProductsListFragmentToProductDetailFragment(it)
-            binding.root.findNavController().navigate(direction)
-        }
+        ProductsAdapter() { navigateToDetail(it) }
     }
 
     override fun onCreateView(
@@ -71,5 +68,10 @@ class ProductsListFragment : Fragment() {
         viewModel.products.observe(requireActivity()) {
             productsAdapter.setData(it)
         }
+    }
+
+    private fun navigateToDetail(product: Product){
+        val direction = ProductsListFragmentDirections.actionProductsListFragmentToProductDetailFragment(product)
+        binding.root.findNavController().navigate(direction)
     }
 }

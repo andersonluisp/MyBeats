@@ -1,14 +1,11 @@
 package com.example.mybeats.view.login
 
-import android.annotation.TargetApi
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.example.mybeats.databinding.ActivityMainBinding
 import com.example.mybeats.view.products.ProductsActivity
 
