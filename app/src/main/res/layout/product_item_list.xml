@@ -5,34 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/list_background"
-    android:padding="16dp">
+    android:padding="@dimen/item_list_product_padding">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvImageProduct"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+        android:layout_width="@dimen/item_list_product_container_image_size"
+        android:layout_height="@dimen/item_list_product_container_image_size"
         android:background="@color/light_gray"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="@dimen/item_list_product_container_radius"
         app:cardElevation="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivProduct"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/item_list_product_image_size"
+            android:layout_height="@dimen/item_list_product_image_size"
             android:layout_gravity="center"
             tools:srcCompat="@drawable/headset" />
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tvProductName"
+        style="@style/itemListProductModelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:fontFamily="@font/dm_sans_700"
-        android:textColor="@color/white_80"
-        android:textSize="14sp"
+        android:layout_marginStart="@dimen/item_list_product_margin_between_image_and_model"
         app:layout_constraintBottom_toTopOf="@id/icStarRating"
         app:layout_constraintStart_toEndOf="@id/cvImageProduct"
         app:layout_constraintTop_toTopOf="@id/cvImageProduct"
@@ -49,12 +47,10 @@
 
     <TextView
         android:id="@+id/tvRating"
+        style="@style/itemListProductSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:fontFamily="@font/dm_sans_400"
-        android:textColor="@color/white_80"
-        android:textSize="12sp"
+        android:layout_marginStart="@dimen/item_list_product_margin_between_rating_and_icon"
         app:layout_constraintBottom_toBottomOf="@id/icStarRating"
         app:layout_constraintStart_toEndOf="@id/icStarRating"
         app:layout_constraintTop_toTopOf="@id/icStarRating"
@@ -62,12 +58,10 @@
 
     <TextView
         android:id="@+id/tvReviews"
+        style="@style/itemListProductSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:fontFamily="@font/dm_sans_400"
-        android:textColor="@color/white_80"
-        android:textSize="12sp"
+        android:layout_marginStart="@dimen/item_list_product_margin_between_reviews_and_rating"
         app:layout_constraintBottom_toBottomOf="@id/icStarRating"
         app:layout_constraintStart_toEndOf="@id/tvRating"
         app:layout_constraintTop_toTopOf="@id/icStarRating"
@@ -75,15 +69,13 @@
 
     <TextView
         android:id="@+id/tvProductPrice"
+        style="@style/itemListProductPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/primary_300"
-        android:fontFamily="@font/dm_sans_700"
-        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="R$ 20,50"/>
+        tools:text="R$ 20,50" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="guideStartVerticalMargin">24dp</dimen>
-    <dimen name="guideEndVerticalMargin">24dp</dimen>
-    <dimen name="guideHorizontalTop">63dp</dimen>
-    <dimen name="loginTitle">45sp</dimen>
-    <dimen name="loginSubtitle">14sp</dimen>
+
+    <dimen name="guide_start_vertical_margin">24dp</dimen>
+    <dimen name="guide_end_vertical_margin">24dp</dimen>
+    <dimen name="guide_horizontal_top">63dp</dimen>
+
+    <dimen name="login_title_text_size">45sp</dimen>
+    <dimen name="login_subtitle_text_size">14sp</dimen>
     <dimen name="login_margin_top_user_input_to_center">24dp</dimen>
     <dimen name="login_margin_between_user_password">30dp</dimen>
     <dimen name="login_margin_between_password_and_button">30dp</dimen>
     <dimen name="login_margin_between_button_and_subscribe">24dp</dimen>
     <dimen name="login_label_subscribe">14sp</dimen>
     <dimen name="login_margin_between_subtitle_and_title">8dp</dimen>
+
+    <dimen name="list_header_product_image_width">220dp</dimen>
+    <dimen name="list_header_product_image_height">220dp</dimen>
+    <dimen name="list_collapsing_toolbar_height">375dp</dimen>
+
+    <dimen name="product_detail_appbar_height">325dp</dimen>
+    <dimen name="product_detail_image_size">180dp</dimen>
+    <dimen name="product_detail_title_size">45sp</dimen>
+    <dimen name="product_detail_info">16sp</dimen>
+    <dimen name="product_detail_margin_between_infos">16dp</dimen>
+    <dimen name="product_detail_margin_between_label_and_value">36dp</dimen>
+    <dimen name="product_detail_margin_between_info_and_button">24dp</dimen>
+
+    <dimen name="item_list_product_container_image_size">55dp</dimen>
+    <dimen name="item_list_product_container_radius">8dp</dimen>
+    <dimen name="item_list_product_image_size">40dp</dimen>
+    <dimen name="item_list_product_margin_between_image_and_model">37dp</dimen>
+    <dimen name="item_list_product_model_text_size">14sp</dimen>
+    <dimen name="item_list_product_subtitle_text_size">12sp</dimen>
+    <dimen name="item_list_product_margin_between_reviews_and_rating">10dp</dimen>
+    <dimen name="item_list_product_margin_between_rating_and_icon">4dp</dimen>
+    <dimen name="item_list_product_price_text_size">18sp</dimen>
+    <dimen name="item_list_product_padding">16dp</dimen>
+
 </resources>

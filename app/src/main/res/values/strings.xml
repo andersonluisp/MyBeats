@@ -9,4 +9,20 @@
     <string name="label_not_subscribed">Ainda não é cadastrado?</string>
     <string name="label_headset_deejay">Especializados em fones para deejay</string>
     <string name="phone_model_02">Phone model 02</string>
+    <string name="label_search">Search</string>
+
+    <string name="BRL">R$ %s</string>
+    <string name="label_connection">Conexão</string>
+    <string name="label_compatibility">Compatibilidade</string>
+    <string name="label_power_supply">Alimentação</string>
+    <string name="label_autonomy">Autonomia</string>
+    <string name="label_height">Altura</string>
+    <string name="label_capture">Captação</string>
+    <string name="buy">Comprar</string>
+
+    <plurals name="reviews_count">
+        <item quantity="one" formatted="true">%1$d Review</item>
+        <item quantity="other" formatted="true">%1$d Reviews</item>
+    </plurals>
+
 </resources>

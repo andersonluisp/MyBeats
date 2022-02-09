@@ -7,8 +7,9 @@
     tools:context=".view.products.list.ProductsListFragment">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="375dp">
+        android:layout_height="@dimen/list_collapsing_toolbar_height">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -25,8 +26,8 @@
 
                 <ImageView
                     android:id="@+id/ivHeadset"
-                    android:layout_width="220dp"
-                    android:layout_height="220dp"
+                    android:layout_width="@dimen/list_header_product_image_width"
+                    android:layout_height="@dimen/list_header_product_image_height"
                     android:contentDescription="@string/phone_model_02"
                     android:src="@drawable/headset"
                     android:layout_marginTop="?attr/actionBarSize"
@@ -46,10 +47,11 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.appcompat.widget.Toolbar
+                app:collapseIcon="@drawable/ic_back"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:elevation="4dp"
+                app:layout_collapseMode="pin"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +64,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProducts"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/list_background"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         app:layout_constraintBottom_toBottomOf="parent"

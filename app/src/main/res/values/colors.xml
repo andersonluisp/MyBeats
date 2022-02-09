@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="primary_500">#6200EE</color>
+    <color name="primary_400">#7F39FB</color>
     <color name="primary_300">#985EFF</color>
     <color name="primary_200">#BB86FC</color>
     <color name="primary">#0ACF83</color>
@@ -24,4 +25,6 @@
     <color name="white_80">#CCFFFFFF</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#99FFFFFF</color>
+    <color name="toolbar_color">#997D22FF</color>
+    <color name="gray">#4B4B4B</color>
 </resources>

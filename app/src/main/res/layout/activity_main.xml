@@ -41,21 +41,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="@dimen/guideHorizontalTop" />
+            app:layout_constraintGuide_begin="@dimen/guide_horizontal_top" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideVerticalStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="@dimen/guideStartVerticalMargin" />
+            app:layout_constraintGuide_begin="@dimen/guide_start_vertical_margin" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideVerticalEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_end="@dimen/guideEndVerticalMargin" />
+            app:layout_constraintGuide_end="@dimen/guide_end_vertical_margin" />
 
         <TextView
             android:id="@+id/tvMyBeats"
@@ -64,7 +64,7 @@
             android:fontFamily="@font/dm_sans_700"
             android:text="@string/my_beats"
             android:textColor="@color/white"
-            android:textSize="@dimen/loginTitle"
+            android:textSize="@dimen/login_title_text_size"
             app:layout_constraintEnd_toEndOf="@id/guideVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/guideVerticalStart"
             app:layout_constraintTop_toTopOf="@id/guideHorizontalTop" />
@@ -76,7 +76,7 @@
             android:fontFamily="@font/dm_sans_700"
             android:text="@string/label_headset_deejay"
             android:textColor="@color/white"
-            android:textSize="@dimen/loginSubtitle"
+            android:textSize="@dimen/login_subtitle_text_size"
             app:layout_constraintEnd_toEndOf="@id/guideVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/guideVerticalStart"
             app:layout_constraintTop_toBottomOf="@id/tvMyBeats" />
@@ -88,7 +88,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/login_margin_top_user_input_to_center"
             android:theme="@style/MyTextInputLayout_overlay"
-            app:boxStrokeColor="@color/primary_200"
             app:layout_constraintEnd_toEndOf="@id/guideVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/guideVerticalStart"
             app:layout_constraintTop_toBottomOf="@id/guideHorizontal50">
@@ -108,7 +107,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/login_margin_between_user_password"
             android:theme="@style/MyTextInputLayout_overlay"
-            app:boxStrokeColor="@color/primary_200"
             app:layout_constraintEnd_toEndOf="@id/guideVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/guideVerticalStart"
             app:layout_constraintTop_toBottomOf="@id/tilUser"
@@ -126,14 +124,11 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnEnter"
+            style="@style/commonButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/login_margin_between_password_and_button"
-            android:background="@drawable/button_bg"
-            android:fontFamily="@font/dm_sans_700"
             android:text="@string/enter"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@id/guideVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/guideVerticalStart"
             app:layout_constraintTop_toBottomOf="@id/tilPassword" />
