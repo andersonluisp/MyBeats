@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mybeats.data.model.Product
-import com.example.mybeats.repository.ProductsRepository
+import com.example.mybeats.data.repository.ProductsRepository
 
 class ProductsViewModel(
     private val repository: ProductsRepository
