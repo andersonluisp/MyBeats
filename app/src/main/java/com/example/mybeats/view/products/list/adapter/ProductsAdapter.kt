@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.mybeats.R
 import com.example.mybeats.data.model.Product
 import com.example.mybeats.databinding.ProductItemListBinding
+import com.example.mybeats.view.extension.loadUrl
 import java.util.*
 
 class ProductsAdapter(val onItemClick: (Product) -> Unit): ListAdapter<Product, ProductsAdapter.ProductsAdapterViewHolder>(ProductsDiffUtil()) {
@@ -23,10 +24,7 @@ class ProductsAdapter(val onItemClick: (Product) -> Unit): ListAdapter<Product, 
             binding.tvRating.text = item.rating.toString()
             binding.tvProductPrice.text = binding.root.context.resources.getString(R.string.BRL, item.price)
             binding.tvReviews.text = binding.root.context.resources.getQuantityString(R.plurals.reviews_count, item.reviews, item.reviews)
-
-            Glide.with(binding.root)
-                .load(item.image)
-                .into(binding.ivProduct)
+            binding.ivProduct.loadUrl(binding.root, item.imageUrl)
 
             binding.root.setOnClickListener {
                 onItemClick(item)
