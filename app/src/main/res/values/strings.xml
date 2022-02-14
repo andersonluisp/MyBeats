@@ -19,6 +19,7 @@
     <string name="label_height">Altura</string>
     <string name="label_capture">Captação</string>
     <string name="buy">Comprar</string>
+    <string name="try_again">Tente Novamente</string>
 
     <plurals name="reviews_count">
         <item quantity="one" formatted="true">%1$d Review</item>
