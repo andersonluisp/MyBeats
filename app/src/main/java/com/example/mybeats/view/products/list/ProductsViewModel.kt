@@ -1,21 +1,44 @@
 package com.example.mybeats.view.products.list
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.mybeats.data.model.Product
+import com.example.mybeats.data.remote.responses.ResultRemote
 import com.example.mybeats.data.repository.ProductsRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class ProductsViewModel(
     private val repository: ProductsRepository
 ) : ViewModel() {
 
-    private var _products = MutableLiveData<List<Product>>()
-    val products: LiveData<List<Product>>
-        get() = _products
+    private var _productsState = MutableStateFlow<ViewState<List<Product>>>(ViewState.Initial)
+    val productsState: StateFlow<ViewState<List<Product>>>
+        get() = _productsState
 
     fun getProducts() {
-        val result = repository.getProducts()
-        _products.postValue(result)
+        _productsState.value = ViewState.Loading
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getProducts().collect {
+                when (it){
+                    is ResultRemote.Success -> {
+                        _productsState.value = ViewState.Success(it.response)
+                    }
+                    is ResultRemote.ErrorResponse ->{
+                        _productsState.value = ViewState.Error(it.throwable)
+                    }
+                }
+            }
+        }
+    }
+
+    sealed class ViewState<out T> {
+        object Loading : ViewState<Nothing>()
+        data class Success<T>(val data: T) : ViewState<T>()
+        data class Error(val throwable: Throwable) : ViewState<Nothing>()
+        object Initial : ViewState<Nothing>()
     }
 }
