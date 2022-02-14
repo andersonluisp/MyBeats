@@ -16,9 +16,9 @@
 
     <dimen name="list_header_product_image_width">220dp</dimen>
     <dimen name="list_header_product_image_height">220dp</dimen>
-    <dimen name="list_collapsing_toolbar_height">375dp</dimen>
+    <dimen name="list_collapsing_toolbar_height">320dp</dimen>
 
-    <dimen name="product_detail_appbar_height">325dp</dimen>
+    <dimen name="product_detail_appbar_height">270dp</dimen>
     <dimen name="product_detail_image_size">180dp</dimen>
     <dimen name="product_detail_title_size">45sp</dimen>
     <dimen name="product_detail_info">16sp</dimen>
