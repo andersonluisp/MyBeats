@@ -24,7 +24,7 @@ class ProductsListFragment : Fragment() {
     private lateinit var binding: FragmentProductsListBinding
     private val viewModel: ProductsViewModel by viewModel()
     private val productsAdapter: ProductsAdapter by lazy {
-        ProductsAdapter() { navigateToDetail(it) }
+        ProductsAdapter { navigateToDetail(it) }
     }
 
     override fun onCreateView(
