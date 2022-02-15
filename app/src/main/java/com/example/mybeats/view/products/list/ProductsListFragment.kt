@@ -103,7 +103,7 @@ class ProductsListFragment : Fragment() {
 
     private fun showInitialState(){
         binding.apply {
-            containerError.invisible()
+            groupError.invisible()
             containerList.invisible()
             circularProgressBar.invisible()
         }
@@ -112,15 +112,16 @@ class ProductsListFragment : Fragment() {
     private fun showSuccessState(productsList: List<Product>){
         productsAdapter.setData(productsList)
         binding.apply {
-            containerError.invisible()
+            groupError.invisible()
             containerList.visible()
             circularProgressBar.invisible()
+            (activity as AppCompatActivity).supportActionBar?.show()
         }
     }
 
     private fun showLoadingState(){
         binding.apply {
-            containerError.invisible()
+            groupError.invisible()
             circularProgressBar.visible()
             containerList.invisible()
         }
@@ -128,9 +129,10 @@ class ProductsListFragment : Fragment() {
 
     private fun showErrorState(){
         binding.apply {
-            containerError.visible()
+            groupError.visible()
             circularProgressBar.invisible()
             containerList.invisible()
+            (activity as AppCompatActivity).supportActionBar?.hide()
         }
     }
 
