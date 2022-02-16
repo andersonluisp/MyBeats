@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mybeats.data.model.Product
 import com.example.mybeats.data.remote.responses.ResultRemote
 import com.example.mybeats.data.repository.ProductsRepository
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +13,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class ProductsViewModel(
-    private val repository: ProductsRepository
+    private val repository: ProductsRepository,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
     private var _productsState = MutableStateFlow<ViewState<List<Product>>>(ViewState.Initial)
@@ -21,8 +23,9 @@ class ProductsViewModel(
 
     fun getProducts() {
         _productsState.value = ViewState.Loading
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.getProducts().collect {
+        viewModelScope.launch(dispatcher) {
+            repository.getProducts()
+                .collect {
                 when (it){
                     is ResultRemote.Success -> {
                         _productsState.value = ViewState.Success(it.response)
@@ -36,9 +39,9 @@ class ProductsViewModel(
     }
 
     sealed class ViewState<out T> {
+        object Initial : ViewState<Nothing>()
         object Loading : ViewState<Nothing>()
         data class Success<T>(val data: T) : ViewState<T>()
         data class Error(val throwable: Throwable) : ViewState<Nothing>()
-        object Initial : ViewState<Nothing>()
     }
 }

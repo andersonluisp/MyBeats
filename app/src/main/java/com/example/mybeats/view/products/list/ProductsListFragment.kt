@@ -33,6 +33,11 @@ class ProductsListFragment : Fragment() {
     ): View {
         binding = FragmentProductsListBinding.inflate(layoutInflater)
         setupActionBar()
+
+        if (savedInstanceState == null) {
+            viewModel.getProducts()
+        }
+
         return binding.root
     }
 
@@ -42,7 +47,6 @@ class ProductsListFragment : Fragment() {
         setupRecyclerView()
         setupListeners()
         setHasOptionsMenu(true)
-        viewModel.getProducts()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
