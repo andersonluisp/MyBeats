@@ -37,24 +37,17 @@ android {
 }
 
 dependencies {
-    def nav_version = "2.4.1"
-    def koinVersion = "2.0.1"
-    def glideVersion = '4.12.0'
-    def gsonVersion = '2.9.0'
-    def retrofitVersion = '2.9.0'
-    def coroutineVersion = '1.3.9'
-
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+    implementation "androidx.legacy:legacy-support-v4:$legacyVersion"
+    implementation "androidx.core:core-ktx:$ktxVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewModelVersion"
 
     //Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$navVersion"
 
     //Koin
     implementation "org.koin:koin-android:$koinVersion"
@@ -74,13 +67,14 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
 
-    testImplementation 'junit:junit:4.13.2'
-    testImplementation "com.google.truth:truth:1.1.3"
-    testImplementation "io.mockk:mockk:1.10.2"
+    //Tests
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "com.google.truth:truth:$truthVersion"
+    testImplementation "io.mockk:mockk:$mocckVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion"
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation "androidx.test:runner:1.4.0"
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    testImplementation "androidx.arch.core:core-testing:2.1.0"
-    testImplementation 'app.cash.turbine:turbine:0.7.0'
+    androidTestImplementation "androidx.test.ext:junit:$extJunitVersion"
+    androidTestImplementation "androidx.test:runner:$runnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    testImplementation "androidx.arch.core:core-testing:$archCoreVersion"
+    testImplementation "app.cash.turbine:turbine:$turbineVersion"
 }
