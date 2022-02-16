@@ -3,6 +3,7 @@ package com.example.mybeats.data.repository
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mybeats.data.remote.api.ProductsApi
 import com.example.mybeats.data.remote.extension.toModel
+import com.example.mybeats.data.remote.model.ProductBody
 import com.example.mybeats.data.remote.model.ProductsBody
 import com.example.mybeats.data.remote.responses.ResultRemote
 import com.google.common.truth.Truth.assertThat
@@ -27,10 +28,25 @@ class ProductsRepositoryTest {
     @MockK
     private lateinit var productsApi: ProductsApi
 
-    @MockK
-    private lateinit var productsBody: ProductsBody
-
     private lateinit var productsRepository: ProductsRepository
+
+    private val mockedProductBody = ProductsBody(
+        listOf(
+            ProductBody(
+                autonomy = "16 Horas",
+                capture = "Semi ativa",
+                compatibility = "Bluetooth 4.1",
+                connection = "Bluetooth",
+                height = "18,4 cm",
+                imageUrl = "imageUrl",
+                model = "Fone modelo 02",
+                powerSupply = "Bateria",
+                price = "20,50",
+                rating = 4.6,
+                reviews = 86
+            )
+        )
+    )
 
     @Before
     fun setup() {
@@ -42,11 +58,11 @@ class ProductsRepositoryTest {
     fun `getProducts SHOULD emit ResultRemote Success WHEN receive ProductBody`() {
         runBlockingTest {
             //Given
-            coEvery { productsApi.getProducts() } returns MockedProductBodyResponse.mockedProductBody
+            coEvery { productsApi.getProducts() } returns mockedProductBody
             //When
             val getProductsResult = productsRepository.getProducts()
             //That
-            assertThat(getProductsResult.first()).isEqualTo(flowOf(ResultRemote.Success(MockedProductBodyResponse.mockedProductBody.products.map { it.toModel() })).first())
+            assertThat(getProductsResult.first()).isEqualTo(flowOf(ResultRemote.Success(mockedProductBody.products.map { it.toModel() })).first())
         }
     }
 
