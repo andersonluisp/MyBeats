@@ -3,6 +3,7 @@ package com.example.mybeats.view.products.list
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import app.cash.turbine.test
 import com.example.mybeats.data.model.Product
+import com.example.mybeats.view.products.list.ProductsViewModel.ViewState
 import com.example.mybeats.data.remote.responses.ResultRemote
 import com.example.mybeats.data.repository.ProductsRepository
 import com.google.common.truth.Truth.assertThat
@@ -81,9 +82,9 @@ class ProductsViewModelTest {
             )
             productsViewModel.productsState.test {
                 productsViewModel.getProducts()
-                assertThat(awaitItem()).isInstanceOf(ProductsViewModel.ViewState.Initial::class.java)
-                assertThat(awaitItem()).isInstanceOf(ProductsViewModel.ViewState.Loading::class.java)
-                assertThat(awaitItem()).isEqualTo(ProductsViewModel.ViewState.Success(mockedProductsList))
+                assertThat(awaitItem()).isInstanceOf(ViewState.Initial::class.java)
+                assertThat(awaitItem()).isInstanceOf(ViewState.Loading::class.java)
+                assertThat(awaitItem()).isEqualTo(ViewState.Success(mockedProductsList))
                 cancelAndConsumeRemainingEvents()
             }
         }
@@ -97,9 +98,24 @@ class ProductsViewModelTest {
             )
             productsViewModel.productsState.test {
                 productsViewModel.getProducts()
-                assertThat(awaitItem()).isInstanceOf(ProductsViewModel.ViewState.Initial::class.java)
-                assertThat(awaitItem()).isInstanceOf(ProductsViewModel.ViewState.Loading::class.java)
-                assertThat(awaitItem()).isInstanceOf(ProductsViewModel.ViewState.Error::class.java)
+                assertThat(awaitItem()).isInstanceOf(ViewState.Initial::class.java)
+                assertThat(awaitItem()).isInstanceOf(ViewState.Loading::class.java)
+                assertThat(awaitItem()).isInstanceOf(ViewState.Error::class.java)
+                cancelAndConsumeRemainingEvents()
+            }
+        }
+    }
+
+    @Test
+    fun `getProducts SHOULD emit ViewState Initial, Loading an Error to View WHEN receive an Exception`(){
+        runBlocking {
+            val throwable = Exception("Test Exception")
+            coEvery { productsRepository.getProducts() } throws throwable
+            productsViewModel.productsState.test {
+                productsViewModel.getProducts()
+                assertThat(awaitItem()).isInstanceOf(ViewState.Initial::class.java)
+                assertThat(awaitItem()).isInstanceOf(ViewState.Loading::class.java)
+                assertThat(awaitItem()).isEqualTo(ViewState.Error(throwable))
                 cancelAndConsumeRemainingEvents()
             }
         }
