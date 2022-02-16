@@ -3,8 +3,6 @@ package com.example.mybeats.data.repository
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mybeats.data.remote.api.ProductsApi
 import com.example.mybeats.data.remote.extension.toModel
-import com.example.mybeats.data.remote.model.ProductBody
-import com.example.mybeats.data.remote.model.ProductsBody
 import com.example.mybeats.data.remote.responses.ResultRemote
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
@@ -30,24 +28,6 @@ class ProductsRepositoryTest {
 
     private lateinit var productsRepository: ProductsRepository
 
-    private val mockedProductBody = ProductsBody(
-        listOf(
-            ProductBody(
-                autonomy = "16 Horas",
-                capture = "Semi ativa",
-                compatibility = "Bluetooth 4.1",
-                connection = "Bluetooth",
-                height = "18,4 cm",
-                imageUrl = "imageUrl",
-                model = "Fone modelo 02",
-                powerSupply = "Bateria",
-                price = "20,50",
-                rating = 4.6,
-                reviews = 86
-            )
-        )
-    )
-
     @Before
     fun setup() {
         MockKAnnotations.init(this)
@@ -57,12 +37,13 @@ class ProductsRepositoryTest {
     @Test
     fun `getProducts SHOULD emit ResultRemote Success WHEN receive ProductBody`() {
         runBlockingTest {
+            val productsBody = FakeProductsRepository.getProductsBody()
             //Given
-            coEvery { productsApi.getProducts() } returns mockedProductBody
+            coEvery { productsApi.getProducts() } returns productsBody
             //When
             val getProductsResult = productsRepository.getProducts()
             //That
-            assertThat(getProductsResult.first()).isEqualTo(flowOf(ResultRemote.Success(mockedProductBody.products.map { it.toModel() })).first())
+            assertThat(getProductsResult.first()).isEqualTo(flowOf(ResultRemote.Success(productsBody.products.map { it.toModel() })).first())
         }
     }
 
