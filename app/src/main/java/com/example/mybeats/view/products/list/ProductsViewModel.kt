@@ -37,7 +37,7 @@ class ProductsViewModel(
                         }
                     }
             } catch (throwable: Throwable){
-                _productsState.value = ViewState.Error(throwable)
+                _productsState.value = ViewState.Loading
             }
         }
     }
