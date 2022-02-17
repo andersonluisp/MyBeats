@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupFullScreen()
         setupListeners()
+        val teste = "teste"
     }
 
     @Suppress("DEPRECATION")
