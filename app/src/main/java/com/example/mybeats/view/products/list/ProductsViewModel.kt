@@ -24,16 +24,20 @@ class ProductsViewModel(
     fun getProducts() {
         _productsState.value = ViewState.Loading
         viewModelScope.launch(dispatcher) {
-            repository.getProducts()
-                .collect {
-                when (it){
-                    is ResultRemote.Success -> {
-                        _productsState.value = ViewState.Success(it.response)
+            try{
+                repository.getProducts()
+                    .collect {
+                        when (it){
+                            is ResultRemote.Success -> {
+                                _productsState.value = ViewState.Success(it.response)
+                            }
+                            is ResultRemote.ErrorResponse ->{
+                                _productsState.value = ViewState.Error(it.throwable)
+                            }
+                        }
                     }
-                    is ResultRemote.ErrorResponse ->{
-                        _productsState.value = ViewState.Error(it.throwable)
-                    }
-                }
+            } catch (throwable: Throwable){
+                _productsState.value = ViewState.Error(throwable)
             }
         }
     }
