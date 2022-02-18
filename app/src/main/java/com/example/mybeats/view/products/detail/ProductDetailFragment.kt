@@ -18,7 +18,8 @@ class ProductDetailFragment : Fragment() {
     private val args: ProductDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProductDetailBinding.inflate(layoutInflater)
@@ -51,6 +52,5 @@ class ProductDetailFragment : Fragment() {
             tvHeight.text = product.height
             tvCapture.text = product.capture
         }
-
     }
 }

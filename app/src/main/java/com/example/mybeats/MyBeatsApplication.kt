@@ -7,7 +7,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
 @Suppress("UNUSED")
-class MyBeatsApplication: Application() {
+class MyBeatsApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -18,5 +18,4 @@ class MyBeatsApplication: Application() {
             modules(mainModule)
         }
     }
-
 }

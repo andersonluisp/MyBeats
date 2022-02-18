@@ -2,7 +2,11 @@ package com.example.mybeats.view.products.list
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -28,7 +32,8 @@ class ProductsListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProductsListBinding.inflate(layoutInflater)
@@ -57,7 +62,14 @@ class ProductsListFragment : Fragment() {
     private fun setupActionBar() {
         (activity as AppCompatActivity).supportActionBar?.apply {
             elevation = 0f
-            setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(requireContext(), R.color.toolbar_color)))
+            setBackgroundDrawable(
+                ColorDrawable(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.toolbar_color
+                    )
+                )
+            )
             title = ""
         }
     }
@@ -105,7 +117,7 @@ class ProductsListFragment : Fragment() {
         }
     }
 
-    private fun showInitialState(){
+    private fun showInitialState() {
         binding.apply {
             groupError.invisible()
             containerList.invisible()
@@ -113,7 +125,7 @@ class ProductsListFragment : Fragment() {
         }
     }
 
-    private fun showSuccessState(productsList: List<Product>){
+    private fun showSuccessState(productsList: List<Product>) {
         productsAdapter.setData(productsList)
         binding.apply {
             groupError.invisible()
@@ -123,7 +135,7 @@ class ProductsListFragment : Fragment() {
         }
     }
 
-    private fun showLoadingState(){
+    private fun showLoadingState() {
         binding.apply {
             groupError.invisible()
             circularProgressBar.visible()
@@ -131,7 +143,7 @@ class ProductsListFragment : Fragment() {
         }
     }
 
-    private fun showErrorState(){
+    private fun showErrorState() {
         binding.apply {
             groupError.visible()
             circularProgressBar.invisible()
@@ -140,8 +152,9 @@ class ProductsListFragment : Fragment() {
         }
     }
 
-    private fun navigateToDetail(product: Product){
-        val direction = ProductsListFragmentDirections.actionProductsListFragmentToProductDetailFragment(product)
+    private fun navigateToDetail(product: Product) {
+        val direction =
+            ProductsListFragmentDirections.actionProductsListFragmentToProductDetailFragment(product)
         binding.root.findNavController().navigate(direction)
     }
 }

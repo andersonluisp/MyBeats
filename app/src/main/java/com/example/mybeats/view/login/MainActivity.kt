@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupListeners(){
+    private fun setupListeners() {
         binding.btnEnter.setOnClickListener {
             val intent = Intent(this, ProductsActivity::class.java)
             startActivity(intent)

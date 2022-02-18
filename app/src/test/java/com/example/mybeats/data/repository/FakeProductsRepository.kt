@@ -5,7 +5,7 @@ import com.example.mybeats.data.remote.model.ProductsBody
 
 object FakeProductsRepository {
 
-    fun getProductsBody() : ProductsBody{
+    fun getProductsBody(): ProductsBody {
         return ProductsBody(
             listOf(
                 ProductBody(
