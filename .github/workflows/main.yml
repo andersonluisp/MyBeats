@@ -22,8 +22,24 @@ jobs:
       - name: Unit tests
         run: ./gradlew test
 
+  detekt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Detekt Verification
+        run: ./gradlew detektVerification
+
+  ktlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Ktlint Verification
+        run: ./gradlew ktlint
+
   build:
-    needs: [ unit_tests ]
+    needs: [ unit_tests, detekt, ktlint ]
     runs-on: ubuntu-latest
     steps:
       # 1
