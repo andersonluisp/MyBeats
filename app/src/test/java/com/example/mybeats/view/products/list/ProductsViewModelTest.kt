@@ -3,9 +3,9 @@ package com.example.mybeats.view.products.list
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import app.cash.turbine.test
 import com.example.mybeats.data.model.Product
-import com.example.mybeats.view.products.list.ProductsViewModel.ViewState
 import com.example.mybeats.data.remote.responses.ResultRemote
 import com.example.mybeats.data.repository.ProductsRepository
+import com.example.mybeats.view.products.list.ProductsViewModel.ViewState
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -68,12 +68,12 @@ class ProductsViewModelTest {
     }
 
     @After
-    fun tearDown(){
+    fun tearDown() {
         testDispatcher.cleanupTestCoroutines()
     }
 
     @Test
-    fun `getProducts SHOULD emit ViewState Initial, Loading an Success to View WHEN receive ResultRemote Success`(){
+    fun `getProducts SHOULD emit ViewState Initial, Loading an Success to View WHEN receive ResultRemote Success`() {
         runBlocking {
             coEvery { productsRepository.getProducts() } returns flowOf(
                 ResultRemote.Success(
@@ -91,7 +91,7 @@ class ProductsViewModelTest {
     }
 
     @Test
-    fun `getProducts SHOULD emit ViewState Initial, Loading an Error to View WHEN receive ResultRemote Error`(){
+    fun `getProducts SHOULD emit ViewState Initial, Loading an Error to View WHEN receive ResultRemote Error`() {
         runBlocking {
             coEvery { productsRepository.getProducts() } returns flowOf(
                 ResultRemote.ErrorResponse.Unknown(Exception())
@@ -107,7 +107,7 @@ class ProductsViewModelTest {
     }
 
     @Test
-    fun `getProducts SHOULD emit ViewState Initial, Loading an Error to View WHEN receive an Exception`(){
+    fun `getProducts SHOULD emit ViewState Initial, Loading an Error to View WHEN receive an Exception`() {
         runBlocking {
             val throwable = Exception("Test Exception")
             coEvery { productsRepository.getProducts() } throws throwable

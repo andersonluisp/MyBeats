@@ -8,12 +8,12 @@ import com.example.mybeats.data.remote.responses.ResultRemote
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-class ProductsRepository(private val productsApi : ProductsApi) {
+class ProductsRepository(private val productsApi: ProductsApi) {
     suspend fun getProducts(): Flow<ResultRemote<List<Product>>> {
         return try {
             val response = productsApi.getProducts()
             flowOf(ResultRemote.Success(response.products.map { it.toModel() }))
-        } catch (throwable: Throwable){
+        } catch (throwable: Throwable) {
             flowOf(throwable.mapRemoteErrors())
         }
     }

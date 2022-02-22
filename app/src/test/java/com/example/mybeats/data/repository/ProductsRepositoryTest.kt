@@ -38,24 +38,27 @@ class ProductsRepositoryTest {
     fun `getProducts SHOULD emit ResultRemote Success WHEN receive ProductBody`() {
         runBlockingTest {
             val productsBody = FakeProductsRepository.getProductsBody()
-            //Given
+            // Given
             coEvery { productsApi.getProducts() } returns productsBody
-            //When
+            // When
             val getProductsResult = productsRepository.getProducts()
-            //That
-            assertThat(getProductsResult.first()).isEqualTo(flowOf(ResultRemote.Success(productsBody.products.map { it.toModel() })).first())
+            // That
+            assertThat(getProductsResult.first())
+                .isEqualTo(
+                    flowOf(ResultRemote.Success(productsBody.products.map { it.toModel() })).first()
+                )
         }
     }
 
     @Test
-    fun `getProducts SHOULD emit ResultRemote ErrorResponse WHEN receive an Exception`(){
+    fun `getProducts SHOULD emit ResultRemote ErrorResponse WHEN receive an Exception`() {
         runBlockingTest {
-            //Given
+            // Given
             val throwable = Throwable()
             coEvery { productsApi.getProducts() } throws throwable
-            //When
+            // When
             val getProductsResult = productsRepository.getProducts()
-            //That
+            // That
             assertThat(getProductsResult.first()).isInstanceOf(ResultRemote.ErrorResponse::class.java)
         }
     }

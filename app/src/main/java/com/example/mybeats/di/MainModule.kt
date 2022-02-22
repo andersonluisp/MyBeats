@@ -10,22 +10,28 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+const val CONNECT_TIMEOUT = 30L
+const val READ_TIMEOUT = 30L
+const val WRITE_TIMEOUT = 30L
+
 val mainModule = module {
     factory { providesOkHttpClient() }
 
-    single { createWebService<ProductsApi>(
-        okHttpClient = get(),
-    ) }
+    single {
+        createWebService<ProductsApi>(
+            okHttpClient = get(),
+        )
+    }
 
-    factory { ProductsRepository( productsApi = get()) }
+    factory { ProductsRepository(productsApi = get()) }
 
     viewModel {
-        ProductsViewModel( repository = get() )
+        ProductsViewModel(repository = get())
     }
 }
 
 inline fun <reified T> createWebService(okHttpClient: OkHttpClient): T {
-    val baseUrl  ="https://mocki.io/v1/"
+    val baseUrl = "https://mocki.io/v1/"
     return Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
         .baseUrl(baseUrl)
@@ -36,8 +42,8 @@ inline fun <reified T> createWebService(okHttpClient: OkHttpClient): T {
 
 fun providesOkHttpClient(): OkHttpClient {
     return OkHttpClient.Builder()
-        .connectTimeout(30, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS)
-        .writeTimeout(30, TimeUnit.SECONDS)
+        .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
+        .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+        .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
         .build()
 }

@@ -16,4 +16,4 @@ data class Product(
     val autonomy: String,
     val height: String,
     val capture: String
-): Parcelable
+) : Parcelable
