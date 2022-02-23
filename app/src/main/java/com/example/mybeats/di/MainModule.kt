@@ -1,9 +1,12 @@
 package com.example.mybeats.di
 
+import android.content.Context
 import com.example.mybeats.data.remote.api.ProductsApi
+import com.example.mybeats.data.remote.interceptor.LoggingInterceptor
 import com.example.mybeats.data.repository.ProductsRepository
 import com.example.mybeats.view.products.list.ProductsViewModel
 import okhttp3.OkHttpClient
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -15,7 +18,7 @@ const val READ_TIMEOUT = 30L
 const val WRITE_TIMEOUT = 30L
 
 val mainModule = module {
-    factory { providesOkHttpClient() }
+    factory { providesOkHttpClient(androidContext()) }
 
     single {
         createWebService<ProductsApi>(
@@ -40,8 +43,9 @@ inline fun <reified T> createWebService(okHttpClient: OkHttpClient): T {
         .create(T::class.java)
 }
 
-fun providesOkHttpClient(): OkHttpClient {
+fun providesOkHttpClient(context: Context): OkHttpClient {
     return OkHttpClient.Builder()
+        .addInterceptor(LoggingInterceptor(context))
         .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
         .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
         .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
