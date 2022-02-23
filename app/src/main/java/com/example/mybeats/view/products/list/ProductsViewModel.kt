@@ -31,8 +31,11 @@ class ProductsViewModel(
                             is ResultRemote.Success -> {
                                 _productsState.value = ViewState.Success(it.response)
                             }
-                            is ResultRemote.ErrorResponse -> {
-                                _productsState.value = ViewState.Error(it.throwable)
+                            is ResultRemote.ErrorResponse.MappedError -> {
+                                _productsState.value = ViewState.FailedRequest.MappedError(it.error.stringId)
+                            }
+                            is ResultRemote.ErrorResponse.UnknownError -> {
+                                _productsState.value = ViewState.FailedRequest.UnknownError(it.messageError)
                             }
                         }
                     }
@@ -47,5 +50,9 @@ class ProductsViewModel(
         object Loading : ViewState<Nothing>()
         data class Success<T>(val data: T) : ViewState<T>()
         data class Error(val throwable: Throwable) : ViewState<Nothing>()
+        sealed class FailedRequest : ViewState<Nothing>() {
+            data class MappedError(val errorMessageId: Int) : FailedRequest()
+            data class UnknownError(val errorMessage: String) : FailedRequest()
+        }
     }
 }

@@ -111,6 +111,8 @@ class ProductsListFragment : Fragment() {
                     is ProductsViewModel.ViewState.Success -> showSuccessState(it.data)
                     is ProductsViewModel.ViewState.Loading -> showLoadingState()
                     is ProductsViewModel.ViewState.Error -> showErrorState()
+                    is ProductsViewModel.ViewState.FailedRequest.MappedError -> showErrorState()
+                    is ProductsViewModel.ViewState.FailedRequest.UnknownError -> showErrorState()
                     is ProductsViewModel.ViewState.Initial -> showInitialState()
                 }
             }
