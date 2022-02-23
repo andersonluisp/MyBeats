@@ -1,13 +1,17 @@
 package com.example.mybeats.data.remote.extension
 
+import com.example.mybeats.data.remote.model.ProductsBody
 import com.example.mybeats.data.remote.responses.ResultRemote
-import retrofit2.HttpException
+import com.example.mybeats.data.remote.responses.ResultRemote.NetworkErrors
+import retrofit2.Response
 
-fun Throwable.mapRemoteErrors(): ResultRemote.ErrorResponse {
-    return when (this) {
-        is HttpException -> {
-            ResultRemote.ErrorResponse.HttpError(this)
-        }
-        else -> ResultRemote.ErrorResponse.Unknown(this)
+fun Response<ProductsBody>.toErrorResponse(): ResultRemote.ErrorResponse {
+    val networkError = NetworkErrors.values().firstOrNull() {
+        it.code == this.code()
+    }
+    return if (networkError != null) {
+        ResultRemote.ErrorResponse.MappedError(networkError)
+    } else {
+        ResultRemote.ErrorResponse.UnknownError(this.message())
     }
 }
