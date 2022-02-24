@@ -70,7 +70,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
 
-
+    //Xlog
+    implementation "com.elvishew:xlog:$xlogVersion"
 
     //Tests
     testImplementation "junit:junit:$junitVersion"

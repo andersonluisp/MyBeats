@@ -91,16 +91,34 @@ class ProductsViewModelTest {
     }
 
     @Test
-    fun `getProducts SHOULD emit ViewState Initial, Loading an Error to View WHEN receive ResultRemote Error`() {
+    fun `getProducts SHOULD emit Initial, Loading an MappedError to View WHEN receive mapped Error`() {
         runBlocking {
+            val networkError = ResultRemote.NetworkErrors.CONNECTION_SHUTDOWN
             coEvery { productsRepository.getProducts() } returns flowOf(
-                ResultRemote.ErrorResponse.Unknown(Exception())
+                ResultRemote.ErrorResponse.MappedError(networkError)
             )
             productsViewModel.productsState.test {
                 productsViewModel.getProducts()
                 assertThat(awaitItem()).isInstanceOf(ViewState.Initial::class.java)
                 assertThat(awaitItem()).isInstanceOf(ViewState.Loading::class.java)
-                assertThat(awaitItem()).isInstanceOf(ViewState.Error::class.java)
+                assertThat(awaitItem()).isInstanceOf(ViewState.FailedRequest.MappedError::class.java)
+                cancelAndConsumeRemainingEvents()
+            }
+        }
+    }
+
+    @Test
+    fun `getProducts SHOULD emit Initial, Loading an UnknownError to View WHEN receive unmapped Error`() {
+        runBlocking {
+            val errorMessage = "Mocked Unknown Error Test"
+            coEvery { productsRepository.getProducts() } returns flowOf(
+                ResultRemote.ErrorResponse.UnknownError(errorMessage)
+            )
+            productsViewModel.productsState.test {
+                productsViewModel.getProducts()
+                assertThat(awaitItem()).isInstanceOf(ViewState.Initial::class.java)
+                assertThat(awaitItem()).isInstanceOf(ViewState.Loading::class.java)
+                assertThat(awaitItem()).isInstanceOf(ViewState.FailedRequest.UnknownError::class.java)
                 cancelAndConsumeRemainingEvents()
             }
         }

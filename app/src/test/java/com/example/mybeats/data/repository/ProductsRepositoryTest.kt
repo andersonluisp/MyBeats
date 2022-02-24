@@ -3,6 +3,7 @@ package com.example.mybeats.data.repository
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mybeats.data.remote.api.ProductsApi
 import com.example.mybeats.data.remote.extension.toModel
+import com.example.mybeats.data.remote.model.ProductsBody
 import com.example.mybeats.data.remote.responses.ResultRemote
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
@@ -12,10 +13,12 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runBlockingTest
+import okhttp3.ResponseBody
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
+import retrofit2.Response
 
 @ExperimentalCoroutinesApi
 class ProductsRepositoryTest {
@@ -35,11 +38,12 @@ class ProductsRepositoryTest {
     }
 
     @Test
-    fun `getProducts SHOULD emit ResultRemote Success WHEN receive ProductBody`() {
+    fun `getProducts SHOULD emit ResultRemote Success WHEN receive Response Success`() {
         runBlockingTest {
-            val productsBody = FakeProductsRepository.getProductsBody()
             // Given
-            coEvery { productsApi.getProducts() } returns productsBody
+            val productsBody = FakeProductsRepository.getProductsBody()
+            val response = Response.success(productsBody)
+            coEvery { productsApi.getProducts() } returns response
             // When
             val getProductsResult = productsRepository.getProducts()
             // That
@@ -51,15 +55,32 @@ class ProductsRepositoryTest {
     }
 
     @Test
-    fun `getProducts SHOULD emit ResultRemote ErrorResponse WHEN receive an Exception`() {
+    fun `getProducts SHOULD emit MappedError WHEN receive a mapped Error `() {
         runBlockingTest {
             // Given
-            val throwable = Throwable()
-            coEvery { productsApi.getProducts() } throws throwable
+            val errorCode = 901
+            val responseBody = ResponseBody.create(null, "Mocked Mapped Error Test")
+            val responseError = Response.error<ProductsBody>(errorCode, responseBody)
+            coEvery { productsApi.getProducts() } returns responseError
             // When
             val getProductsResult = productsRepository.getProducts()
             // That
-            assertThat(getProductsResult.first()).isInstanceOf(ResultRemote.ErrorResponse::class.java)
+            assertThat(getProductsResult.first()).isInstanceOf(ResultRemote.ErrorResponse.MappedError::class.java)
+        }
+    }
+
+    @Test
+    fun `getProducts SHOULD emit UnknownError WHEN receive an unmapped Error Code `() {
+        runBlockingTest {
+            // Given
+            val errorCode = 999
+            val responseBody = ResponseBody.create(null, "Mocked Unknown Error Test")
+            val responseError = Response.error<ProductsBody>(errorCode, responseBody)
+            coEvery { productsApi.getProducts() } returns responseError
+            // When
+            val getProductsResult = productsRepository.getProducts()
+            // That
+            assertThat(getProductsResult.first()).isInstanceOf(ResultRemote.ErrorResponse.UnknownError::class.java)
         }
     }
 }
