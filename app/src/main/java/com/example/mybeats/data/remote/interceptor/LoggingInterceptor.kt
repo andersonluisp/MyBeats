@@ -5,6 +5,7 @@ import com.elvishew.xlog.LogLevel
 import com.elvishew.xlog.XLog
 import com.example.mybeats.BuildConfig
 import com.example.mybeats.R
+import com.example.mybeats.data.remote.responses.CodeNetworkErrors
 import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Request
@@ -17,17 +18,17 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.util.Locale
 
-@Suppress("TooManyGenericException", "MagicNumber")
+@Suppress("TooManyGenericException")
 class LoggingInterceptor(private val context: Context) : Interceptor {
 
     init {
-        XLog.init(LogLevel.ALL)
+        XLog.init(if (BuildConfig.DEBUG) LogLevel.ALL else LogLevel.NONE)
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         try {
-            val time = System.nanoTime()
+            val time = System.currentTimeMillis()
             var requestLog = String.format(
                 context.getString(R.string.retrofit_logging_request), request.url(),
                 request.headers(),
@@ -39,17 +40,16 @@ class LoggingInterceptor(private val context: Context) : Interceptor {
             ) {
                 requestLog = requestLog + "\n" + bodyToString(request)
             }
-            if (BuildConfig.DEBUG) XLog.d("\nRequest Log:\n$requestLog")
+            XLog.d("\nRequest Log:\n$requestLog")
 
             val response = chain.proceed(request)
-            val time2 = System.nanoTime()
-
+            val time2 = System.currentTimeMillis()
             val responseLog = String.format(
                 Locale.getDefault(),
                 context.getString(R.string.retrofit_logging_response),
                 response.request().url(),
                 response.code(),
-                (time2 - time) / 1e6,
+                (time2 - time).toDouble(),
                 response.headers()
             )
 
@@ -77,11 +77,11 @@ class LoggingInterceptor(private val context: Context) : Interceptor {
 
     private fun mappedCodeException(e: Exception): Int {
         return when (e) {
-            is SocketTimeoutException -> 901
-            is UnknownHostException -> 902
-            is ConnectionShutdownException -> 903
-            is IOException -> 904
-            else -> 999
+            is SocketTimeoutException -> CodeNetworkErrors.SOCKET_TIMEOUT.code
+            is UnknownHostException -> CodeNetworkErrors.UNKNOWN_HOST.code
+            is ConnectionShutdownException -> CodeNetworkErrors.CONNECTION_SHUTDOWN.code
+            is IOException -> CodeNetworkErrors.IO.code
+            else -> CodeNetworkErrors.UNMAPPED_ERROR.code
         }
     }
 
