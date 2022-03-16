@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'androidx.navigation.safeargs'
+    id 'kotlin-kapt'
 }
 
 apply from: rootProject.file('ktlint.gradle')
@@ -13,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.mybeats"
-        minSdk 21
+        minSdk 23
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -59,6 +60,7 @@ dependencies {
 
     //Glide
     implementation "com.github.bumptech.glide:glide:$glideVersion"
+    implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha03'
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 
     //Retrofit
@@ -72,6 +74,13 @@ dependencies {
 
     //Xlog
     implementation "com.elvishew:xlog:$xlogVersion"
+
+    //Room and SQLCipher
+    implementation "net.zetetic:android-database-sqlcipher:$sqlCipherVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+
 
     //Tests
     testImplementation "junit:junit:$junitVersion"
