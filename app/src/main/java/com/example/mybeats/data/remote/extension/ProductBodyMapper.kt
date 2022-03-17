@@ -1,9 +1,9 @@
 package com.example.mybeats.data.remote.extension
 
 import com.example.mybeats.data.model.Product
-import com.example.mybeats.data.remote.model.ProductBody
+import com.example.mybeats.data.remote.model.ProductResponse
 
-fun ProductBody.toModel(): Product {
+fun ProductResponse.toModel(): Product {
     return Product(
         model = this.model,
         imageUrl = this.imageUrl,
