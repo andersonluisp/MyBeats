@@ -1,14 +1,14 @@
 package com.example.mybeats.data.repository
 
-import com.example.mybeats.data.remote.model.ProductBody
-import com.example.mybeats.data.remote.model.ProductsBody
+import com.example.mybeats.data.remote.model.ProductResponse
+import com.example.mybeats.data.remote.model.ProductsResponse
 
 object FakeProductsRepository {
 
-    fun getProductsBody(): ProductsBody {
-        return ProductsBody(
+    fun getProductsBody(): ProductsResponse {
+        return ProductsResponse(
             listOf(
-                ProductBody(
+                ProductResponse(
                     autonomy = "16 Horas",
                     capture = "Semi ativa",
                     compatibility = "Bluetooth 4.1",

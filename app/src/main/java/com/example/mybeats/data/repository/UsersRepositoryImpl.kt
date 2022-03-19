@@ -3,7 +3,7 @@ package com.example.mybeats.data.repository
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.mybeats.data.local.database.UsersDataBase
-import com.example.mybeats.data.local.exception.LoginExceptions
+import com.example.mybeats.data.local.exception.UserExceptions
 import com.example.mybeats.data.local.extension.toDomain
 import com.example.mybeats.data.local.extension.toEntity
 import com.example.mybeats.data.local.model.UserEntity
@@ -23,7 +23,13 @@ class UsersRepositoryImpl(
     }
 
     override suspend fun insertUser(user: User) {
-        usersDataBase.usersDao().insertUser(user.toEntity())
+        usersDataBase.usersDao().runCatching {
+            selectUser(userName = user.userName)
+        }.onSuccess {
+            it?.let {
+                throw UserExceptions.UserAlreadyRegistered()
+            } ?: usersDataBase.usersDao().insertUser(user.toEntity())
+        }
     }
 
     override suspend fun getLoginSharedPreferences(): SharedPreferences =
@@ -38,7 +44,7 @@ class UsersRepositoryImpl(
                 emit(validateUser(user, password))
                 saveLoginCredentials(user, getLoginSharedPreferences())
             }.onFailure { throwable ->
-                throw LoginExceptions.UnknownException(throwable)
+                throw UserExceptions.UnknownException(throwable)
             }
         }
         return flow
@@ -49,8 +55,8 @@ class UsersRepositoryImpl(
             return if (it.password == password)
                 user.toDomain()
             else
-                throw LoginExceptions.WrongPasswordException()
-        } ?: throw LoginExceptions.UserNotFoundException()
+                throw UserExceptions.WrongPasswordException()
+        } ?: throw UserExceptions.UserNotFoundException()
     }
 
     private fun saveLoginCredentials(
