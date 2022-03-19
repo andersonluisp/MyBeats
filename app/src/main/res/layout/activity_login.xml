@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.login.MainActivity">
+    tools:context=".view.login.LoginActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -87,12 +87,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/login_margin_top_user_input_to_center"
+            app:helperText="@string/required"
             android:theme="@style/MyTextInputLayout_overlay"
             app:layout_constraintEnd_toEndOf="@id/guideVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/guideVerticalStart"
             app:layout_constraintTop_toBottomOf="@id/guideHorizontal50">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etUser"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
@@ -107,6 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/login_margin_between_user_password"
             android:theme="@style/MyTextInputLayout_overlay"
+            app:helperText="@string/required"
             app:layout_constraintEnd_toEndOf="@id/guideVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/guideVerticalStart"
             app:layout_constraintTop_toBottomOf="@id/tilUser"
@@ -114,6 +117,7 @@
             app:passwordToggleTint="@color/white_60">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
@@ -122,16 +126,16 @@
                 android:textColor="@color/white_80" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.example.mybeats.view.components.ProgressButton
             android:id="@+id/btnEnter"
-            style="@style/commonButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="@dimen/login_margin_between_password_and_button"
-            android:text="@string/enter"
+            app:text="@string/enter"
+            style="@style/Widget.ProgressButton.Purple"
             app:layout_constraintEnd_toEndOf="@id/guideVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/guideVerticalStart"
-            app:layout_constraintTop_toBottomOf="@id/tilPassword" />
+            app:layout_constraintTop_toBottomOf="@id/tilPassword"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -152,6 +156,7 @@
                 android:textSize="@dimen/login_label_subscribe" />
 
             <TextView
+                android:id="@+id/tvSubscribe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"

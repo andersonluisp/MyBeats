@@ -2,14 +2,16 @@
     <string name="app_name">MyBeats</string>
     <string name="background_login">Background login</string>
     <string name="my_beats">Meu Beats</string>
-    <string name="label_password">Senha</string>
-    <string name="label_user">Usuário</string>
+    <string name="label_password">Senha*</string>
+    <string name="label_user">Usuário*</string>
     <string name="enter">Entrar</string>
     <string name="subscribe"><u>Inscreva-se</u></string>
     <string name="label_not_subscribed">Ainda não é cadastrado?</string>
     <string name="label_headset_deejay">Especializados em fones para deejay</string>
     <string name="phone_model_02">Phone model 02</string>
     <string name="label_search">Search</string>
+    <string name="user_not_found">Usuário não encontrado</string>
+    <string name="invalid_password">Senha inválida</string>
 
     <string name="BRL">R$ %s</string>
     <string name="label_connection">Conexão</string>
@@ -22,19 +24,30 @@
     <string name="try_again">Tente Novamente</string>
 
     <plurals name="reviews_count">
-        <item quantity="one" formatted="true">%1$d Review</item>
-        <item quantity="other" formatted="true">%1$d Reviews</item>
+        <item formatted="true" quantity="one">%1$d Review</item>
+        <item formatted="true" quantity="other">%1$d Reviews</item>
     </plurals>
 
     <!--    Retrofit logging strings-->
-    <string name="retrofit_logging_request">Sending request %s on %n%s%s</string>
+    <string name="retrofit_logging_request" formatted="true">Sending request %s on %n%s%s</string>
     <string name="retrofit_request_method_type">Method</string>
-    <string name="retrofit_logging_response">Received response for %s with Status: %d in %.1fms%n%s</string>
+    <string name="retrofit_logging_response" formatted="true">Received response for %s with Status: %d in %.1fms%n%s</string>
 
     <!--    Network Errors Messages-->
     <string name="socket_timeout_message">Tempo limite atingido - Verifique sua conexão com a Internet</string>
     <string name="unknown_host_message">Não foi possível realizar uma conexão. Por favor, verifique a sua internet</string>
     <string name="connection_shutdown_message">Queda de conexão. Por favor, verifique sua internet</string>
     <string name="io_message">Serviço indisponível, por favor, tente novamente mais tarde.</string>
+    <string name="error_try_again_later">Ocorreu um erro, tente novamente mais tarde</string>
+
+
+    <string name="name">Nome*</string>
+    <string name="register">Cadastrar</string>
+    <string name="required">*Preenchimento obrigatório</string>
+    <string name="user_created_success">Usuário registrado com sucesso</string>
+    <string name="name_can_not_empty">Nome não pode ser vazio</string>
+    <string name="user_can_not_empty">Usuário não pode ser vazio</string>
+    <string name="password_can_not_empty">Password não pode ser vazio</string>
+    <string name="user_already_registered">Usuário já cadastrado</string>
 
 </resources>

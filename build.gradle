@@ -18,6 +18,8 @@ buildscript {
         ktlintVersion = '0.44.0'
         xlogVersion = '1.10.1'
         lottieVersion = '5.0.1'
+        roomVersion = '2.4.2'
+        sqlCipherVersion = '4.5.0@aar'
 
         //Test Dependencies
         junitVersion = '4.13.2'

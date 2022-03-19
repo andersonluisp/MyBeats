@@ -22,9 +22,15 @@
     </style>
 
     <style name="commonButton">
-        <item name="android:background">@drawable/button_bg</item>
+        <item name="android:background">@drawable/button_background</item>
         <item name="android:fontFamily">@font/dm_sans_700</item>
         <item name="android:text">@string/buy</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="textButton">
+        <item name="android:fontFamily">@font/dm_sans_700</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/white</item>
     </style>
@@ -45,6 +51,23 @@
         <item name="android:fontFamily">@font/dm_sans_700</item>
         <item name="android:textColor">@color/primary_300</item>
         <item name="android:textSize">@dimen/item_list_product_price_text_size</item>
+    </style>
+
+<!--    Progress Button-->
+    <style name="ThemeOverlay.Widget.ProgressButton.Purple" parent="">
+        <item name="android:textAppearanceButton">@style/TextAppearance.ProgressButton.Purple</item>
+    </style>
+
+    <style name="TextAppearance.ProgressButton.Purple" parent="@style/TextAppearance.MaterialComponents.Body1">
+        <item name="android:fontFamily">@font/dm_sans_700</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.ProgressButton.Purple" parent="">
+        <item name="android:theme">@style/ThemeOverlay.Widget.ProgressButton.Purple</item>
+        <item name="android:background">@drawable/button_background</item>
     </style>
 
 </resources>
