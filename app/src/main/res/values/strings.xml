@@ -49,5 +49,6 @@
     <string name="user_can_not_empty">Usuário não pode ser vazio</string>
     <string name="password_can_not_empty">Password não pode ser vazio</string>
     <string name="user_already_registered">Usuário já cadastrado</string>
+    <string name="label_logout">Logout</string>
 
 </resources>

@@ -26,4 +26,22 @@ object LoginSharedPreferences {
             ?.putString("password", user?.password)
             ?.apply()
     }
+
+    fun getSavedCredentials(context: Context): HashMap<String, String?> {
+        val sharedPreferences = getSharedPreferences(context)
+        val username: String? = sharedPreferences.getString("username", null)
+        val password: String? = sharedPreferences.getString("password", null)
+        return HashMap<String, String?>().apply {
+            put("username", username)
+            put("password", password)
+        }
+    }
+
+    fun deleteSavedCredentials(context: Context) {
+        val sharedPreferences = getSharedPreferences(context)
+        sharedPreferences.edit()
+            .remove("username")
+            .remove("password")
+            .apply()
+    }
 }

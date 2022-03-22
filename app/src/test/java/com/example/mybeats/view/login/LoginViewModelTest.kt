@@ -62,7 +62,7 @@ class LoginViewModelTest {
 
     @ExperimentalTime
     @Test
-    fun `signIn SHOULD emit ViewState Initial, Loading an Success to View`() {
+    fun `signIn SHOULD emit ViewState Initial, Loading and Success to View`() {
         runBlocking {
             val user = User("anderson", "anderson", "password")
             val username = "anderson"
