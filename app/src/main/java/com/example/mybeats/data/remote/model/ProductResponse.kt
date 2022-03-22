@@ -1,6 +1,6 @@
 package com.example.mybeats.data.remote.model
 
-data class ProductBody(
+data class ProductResponse(
     val autonomy: String,
     val capture: String,
     val compatibility: String,

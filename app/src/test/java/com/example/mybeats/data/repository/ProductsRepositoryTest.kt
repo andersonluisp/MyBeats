@@ -3,7 +3,7 @@ package com.example.mybeats.data.repository
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mybeats.data.remote.api.ProductsApi
 import com.example.mybeats.data.remote.extension.toModel
-import com.example.mybeats.data.remote.model.ProductsBody
+import com.example.mybeats.data.remote.model.ProductsResponse
 import com.example.mybeats.data.remote.responses.ResultRemote
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
@@ -60,7 +60,7 @@ class ProductsRepositoryTest {
             // Given
             val errorCode = 901
             val responseBody = ResponseBody.create(null, "Mocked Mapped Error Test")
-            val responseError = Response.error<ProductsBody>(errorCode, responseBody)
+            val responseError = Response.error<ProductsResponse>(errorCode, responseBody)
             coEvery { productsApi.getProducts() } returns responseError
             // When
             val getProductsResult = productsRepository.getProducts()
@@ -75,7 +75,7 @@ class ProductsRepositoryTest {
             // Given
             val errorCode = 999
             val responseBody = ResponseBody.create(null, "Mocked Unknown Error Test")
-            val responseError = Response.error<ProductsBody>(errorCode, responseBody)
+            val responseError = Response.error<ProductsResponse>(errorCode, responseBody)
             coEvery { productsApi.getProducts() } returns responseError
             // When
             val getProductsResult = productsRepository.getProducts()

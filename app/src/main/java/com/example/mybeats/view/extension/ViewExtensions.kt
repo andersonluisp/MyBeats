@@ -10,7 +10,7 @@ fun View.visible() {
 }
 
 fun View.invisible() {
-    this.isVisible = false
+    this.visibility = View.INVISIBLE
 }
 
 fun ImageView.loadUrl(view: View, url: String) {

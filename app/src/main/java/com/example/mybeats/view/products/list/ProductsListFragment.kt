@@ -1,5 +1,6 @@
 package com.example.mybeats.view.products.list
 
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,10 +16,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mybeats.R
+import com.example.mybeats.data.local.sharedpreferences.LoginSharedPreferences
 import com.example.mybeats.data.model.Product
 import com.example.mybeats.databinding.FragmentProductsListBinding
 import com.example.mybeats.view.extension.invisible
 import com.example.mybeats.view.extension.visible
+import com.example.mybeats.view.login.LoginActivity
 import com.example.mybeats.view.products.list.adapter.ProductsAdapter
 import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -74,9 +77,15 @@ class ProductsListFragment : Fragment() {
         }
     }
 
-    private fun setupListeners() {
-        binding.btnTryAgain.setOnClickListener {
+    private fun setupListeners() = with(binding) {
+        btnTryAgain.setOnClickListener {
             viewModel.getProducts()
+        }
+        btnLogout.setOnClickListener {
+            LoginSharedPreferences.deleteSavedCredentials(requireActivity())
+            val intent = Intent(requireActivity(), LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
     }
 
